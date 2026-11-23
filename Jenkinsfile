@@ -32,7 +32,7 @@ pipeline {
                 script {
                     // Log in to Docker Hub using credentials stored in Jenkins
                     // Create the credential in Jenkins: docker-hub-cred (username + password/token)
-                    docker.withRegistry("https://${REGISTRY}", 'docker-hub-cred') {
+                    docker.withRegistry("https://${REGISTRY}", 'docker-creds') {
                         docker.image(FULL_IMAGE).push()
                         docker.image(LATEST_IMAGE).push()
                     }
