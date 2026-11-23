@@ -1,0 +1,26 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<main class="container">
+  <h1><%= title %></h1>
+  <p class="subtitle">Explore the most stunning cars from around the world.</p>
+
+  <div class="car-grid">
+    <% cars.forEach(car => { %>
+      <article class="car-card">
+        <div class="car-image">
+          <img src="<%= car.image %>" alt="<%= car.name %>" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/img/car-placeholder.svg';">
+          <div class="card-overlay"><span class="car-brand"><%= car.brand %></span></div>
+        </div>
+        <div class="car-info">
+          <h2 class="car-name"><%= car.name %></h2>
+          <span class="car-year"><%= car.year %></span>
+          <p class="car-description"><%= car.description %></p>
+          <a href="#" class="btn">View Details</a>
+        </div>
+      </article>
+    <% }); %>
+  </div>
+</main>
+
+<%- include('./partials/footer') %>
