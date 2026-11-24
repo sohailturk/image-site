@@ -1,0 +1,41 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<main class="container">
+  <a href="/" class="btn back-btn">← Back to Gallery</a>
+
+  <div class="details-layout">
+    <div class="details-image">
+      <img src="<%= car.image %>" alt="<%= car.name %>" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='/img/car-placeholder.svg';">
+      <span class="detail-badge"><%= car.brand %></span>
+      <span class="detail-badge year-badge"><%= car.year %></span>
+    </div>
+
+    <div class="details-content">
+      <h1><%= car.name %></h1>
+      <p class="lead"><%= car.description %></p>
+
+      <div class="car-meta">
+        <div class="meta-item">
+          <span class="meta-label">Brand</span>
+          <span class="meta-value"><%= car.brand %></span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value"><%= car.year %></span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">ID</span>
+          <span class="meta-value">#<%= car.id %></span>
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <a href="<%= car.image %>" class="btn btn-outline" target="_blank" rel="noopener noreferrer">View Image</a>
+        <a href="/" class="btn">Back to Gallery</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('./partials/footer') %>

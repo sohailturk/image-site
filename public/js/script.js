@@ -27,3 +27,41 @@ document.querySelectorAll('img').forEach((img) => {
     img.alt = img.alt || 'Image unavailable';
   });
 });
+
+// ===== Dark / Light Mode =====
+const THEME_KEY = 'awesome-cars-theme';
+const html = document.documentElement;
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = themeToggle?.querySelector('.theme-icon');
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+const LIGHT = 'light';
+const DARK = 'dark';
+
+function getSystemTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK : LIGHT;
+}
+
+function applyTheme(theme) {
+  html.setAttribute('data-theme', theme);
+  if (themeIcon) themeIcon.textContent = theme === DARK ? '☀️' : '🌙';
+  if (themeColorMeta) {
+    themeColorMeta.setAttribute('content', theme === DARK ? '#0f172a' : '#ffffff');
+  }
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+function loadTheme() {
+  const stored = localStorage.getItem(THEME_KEY);
+  const theme = stored || getSystemTheme();
+  applyTheme(theme);
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme') || LIGHT;
+    applyTheme(current === LIGHT ? DARK : LIGHT);
+  });
+}
+
+loadTheme();

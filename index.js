@@ -91,6 +91,31 @@ app.get('/', (req, res) => {
   res.render('index', { cars, title: 'Awesome Cars' });
 });
 
+// Car details page (dummy detail view for a single car)
+app.get('/car/:id', (req, res) => {
+  const car = cars.find((c) => c.id === parseInt(req.params.id, 10));
+  if (!car) {
+    return res.status(404).render('404', { title: 'Car Not Found' });
+  }
+  res.render('car-details', { car, title: `${car.name} - Awesome Cars` });
+});
+
+// Brands page
+app.get('/brands', (req, res) => {
+  const brands = [...new Set(cars.map((c) => c.brand))];
+  res.render('brands', { brands, title: 'Brands - Awesome Cars' });
+});
+
+// About page
+app.get('/about', (req, res) => {
+  res.render('about', { title: 'About - Awesome Cars' });
+});
+
+// Contact page
+app.get('/contact', (req, res) => {
+  res.render('contact', { title: 'Contact - Awesome Cars' });
+});
+
 // Liveness/readiness endpoint used by Docker HEALTHCHECK and the deploy script
 app.get('/health', (req, res) => {
   res.status(200).json({
@@ -98,6 +123,11 @@ app.get('/health', (req, res) => {
     uptime: process.uptime(),
     version: process.env.APP_VERSION || 'dev'
   });
+});
+
+// 404 handler – render custom 404 page for unmatched routes
+app.use((req, res) => {
+  res.status(404).render('404', { title: '404 - Not Found' });
 });
 
 // Only start listening when run directly (so tests can import the app)

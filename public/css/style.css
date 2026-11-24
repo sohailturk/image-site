@@ -220,7 +220,299 @@ h1 {
   opacity: 0.8;
 }
 
-/* Responsive tweaks */
+/* ===== Dark Mode ===== */
+[data-theme="dark"] {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --dark: #f8fafc;
+  --gray: #94a3b8;
+  --light: #0f172a;
+  --white: #1e293b;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] body {
+  background: var(--light);
+  color: var(--dark);
+}
+
+[data-theme="dark"] .site-header {
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .car-card {
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .car-info {
+  color: var(--dark);
+}
+
+[data-theme="dark"] .car-name {
+  color: var(--dark);
+}
+
+[data-theme="dark"] .car-description {
+  color: var(--gray);
+}
+
+[data-theme="dark"] .site-footer {
+  background: var(--white);
+  color: var(--dark);
+}
+
+[data-theme="dark"] .details-layout {
+  color: var(--dark);
+}
+
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .contact-card,
+[data-theme="dark"] .brand-card {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  color: var(--dark);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea {
+  background: var(--light);
+  color: var(--dark);
+  border-color: var(--gray);
+}
+
+[data-theme="dark"] .btn-outline {
+  border-color: var(--dark);
+  color: var(--dark);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  min-width: 44px;
+  height: 44px;
+  background: var(--light);
+  color: var(--dark);
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--gray);
+  color: var(--white);
+}
+
+.theme-toggle .theme-icon {
+  pointer-events: none;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* ===== Car Details Page ===== */
+.details-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.details-image {
+  position: relative;
+  height: 400px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--light);
+}
+
+.details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--white);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-badge.year-badge {
+  top: auto;
+  bottom: 1rem;
+  left: 1rem;
+  background: var(--primary);
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.details-content h1 {
+  font-size: 2.5rem;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.car-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.meta-item:last-child {
+  border-bottom: none;
+}
+
+.meta-label {
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.meta-value {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* ===== Brands / About / Contact Pages ===== */
+.about-grid,
+.contact-card {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.about-card,
+.contact-card,
+.brand-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.about-card h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: var(--dark);
+}
+
+.feature-list {
+  margin: 0.5rem 0 0 1.2rem;
+  color: var(--gray);
+}
+
+.feature-list li {
+  margin-bottom: 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  color: var(--dark);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===== Responsive tweaks ===== */
 @media (max-width: 640px) {
   .container {
     padding: 2rem 1rem;
