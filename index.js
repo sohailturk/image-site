@@ -91,6 +91,20 @@ app.get('/', (req, res) => {
   res.render('index', { cars, title: 'Awesome Cars' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+// Liveness/readiness endpoint used by Docker HEALTHCHECK and the deploy script
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    version: process.env.APP_VERSION || 'dev'
+  });
 });
+
+// Only start listening when run directly (so tests can import the app)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
